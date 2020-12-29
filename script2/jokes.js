@@ -9,7 +9,7 @@ let jokeCounter = 0;
 
 async function writeJokes() {
     while (jokeCounter != jokeAmount) {
-        let joke = oneLinerJoke.getRandomJokeWithTag('family').body + '\n';
+        let joke = oneLinerJoke.getRandomJokeWithTag(jokeSubject).body + '\n';
         let data = await fs.readFile(fileName);
         if (!data.includes(joke)) {
             await fs.appendFile(fileName, joke);
