@@ -8,10 +8,12 @@ const fileName = dirName + "/file";
 
 fs.mkdir(dirName);
 async function createFiles () {
+    const promises = [];
     for (fileNumber=1;fileNumber<=numFiles;fileNumber++){
         const words = randomWords(fileNumber*numWords);
-        await fs.writeFile(fileName+fileNumber, words);
+        promises.push(fs.writeFile(fileName+fileNumber, words));
     }
+    await Promise.all(promises);
 }
 
 createFiles();
